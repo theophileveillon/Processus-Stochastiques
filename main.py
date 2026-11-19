@@ -14,12 +14,11 @@ kappa = 0.6 # le paramètre de destruction, le taux auquel un humain élimine un
 S0 = 990
 Z0 = 10
 N = 1000
+T = np.linspace(0, 50, 100)
 
 # ----------------------------------------------------------------------------
 # Question 2
 # ----------------------------------------------------------------------------
-
-T = np.linspace(0, 50, 100)
 
 def systemeQ1(y, t):
     S, R, Z = y
@@ -105,5 +104,63 @@ plt.xlabel("Temps")
 plt.ylabel("Population")
 plt.legend()
 plt.grid()
-plt.savefig("question5.png")
+plt.savefig("question5_kappa1,1.png")
 plt.close()
+
+T = np.linspace(0, 1000, 100)
+kappa = 1
+def systemeQ1(y, t):
+    S, R, Z = y
+
+    dSdt = -beta * S * Z / N
+    dRdt = kappa * S * Z / N
+    dZdt = (beta-kappa) * S * Z / N
+
+    return [dSdt, dRdt, dZdt]
+
+Solve = odeint(systemeQ1, [S0, 0, Z0], T)
+S = Solve[:, 0]
+R = Solve[:, 1]
+Z = Solve[:, 2]
+
+plt.plot(T, S, label="S(t)")
+plt.plot(T, R, label="R(t)")
+plt.plot(T, Z, label="Z(t)")
+
+plt.xlabel("Temps")
+plt.ylabel("Population")
+plt.legend()
+plt.grid()
+plt.savefig("question5_kappa1.png")
+plt.close()
+
+kappa = 0.9
+T = np.linspace(0, 100, 100)
+
+def systemeQ1(y, t):
+    S, R, Z = y
+
+    dSdt = -beta * S * Z / N
+    dRdt = kappa * S * Z / N
+    dZdt = (beta-kappa) * S * Z / N
+
+    return [dSdt, dRdt, dZdt]
+
+Solve = odeint(systemeQ1, [S0, 0, Z0], T)
+S = Solve[:, 0]
+R = Solve[:, 1]
+Z = Solve[:, 2]
+
+plt.plot(T, S, label="S(t)")
+plt.plot(T, R, label="R(t)")
+plt.plot(T, Z, label="Z(t)")
+
+plt.xlabel("Temps")
+plt.ylabel("Population")
+plt.legend()
+plt.grid()
+plt.savefig("question5_kappa0,9.png")
+plt.close()
+
+kappa = 0.6
+T = np.linspace(0, 50, 100)
