@@ -32,7 +32,7 @@ plt.plot(T, Solve[:, 2], label="Z(t)")
 plt.plot(T, Solve[:, 1], label="R(t)")
 
 plt.xlabel("Temps")
-plt.ylabel("Population")
+plt.ylabel("Population (S0 = 990, Z0 = 10)")
 plt.legend()
 plt.grid()
 plt.savefig("question2.png")
